@@ -1,0 +1,51 @@
+<script>
+        $(document).ready(function() {
+            $.ajax({
+                url: "/GetEnv",
+                type: "GET",
+                dataType: "json",
+                success: function(data) {
+                    // Clear the list before adding new items
+                    $("#objectList").empty();
+
+                    // Iterate through each object and add it to the list
+                    data.forEach(function(object) {
+                        $("#objectList").append("<li>" + object + "</li>");
+                    });
+                },
+                error: function(xhr, status, error) {
+                    console.error("Error fetching data:", error);
+                }
+            });
+        });
+    </script>
+
+
+
+    public static void start()
+    	{
+    		int safety_counter = 1000;
+    		while(safety_counter > 0)
+    		{
+    			if(stopApp) break;
+
+    			for (Flight flight : getFlights())
+    			{
+    				flight.next();
+    			}
+    			for (Airport airport : getAirportList())
+    			{
+    				if(!airport.getPlaneList().isEmpty())
+    				{
+    					for (Plane plane : airport.getPlaneList())
+    					{
+    						Airport randomAccessibleAirport = getAirportList().get(airport.getAccessibleAirportCodes().get(RandomAndProbabilitySource.randInt(0, airport.getAccessibleAirportCodes().size())));
+    						Flight flight = new Flight(plane, airport, randomAccessibleAirport);
+    						flight.TakeOff();
+    					}
+    				}
+    			}
+    			safety_counter--;
+    		}
+            System.err.println("Updates finished!");
+    	}
