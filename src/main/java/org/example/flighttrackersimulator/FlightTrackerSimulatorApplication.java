@@ -1,6 +1,5 @@
 package org.example.flighttrackersimulator;
 
-import org.example.flighttrackersimulator.AdditionalSources.KafkaMessageProducer;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

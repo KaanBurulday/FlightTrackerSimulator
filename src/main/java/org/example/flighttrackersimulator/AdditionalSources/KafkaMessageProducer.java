@@ -7,8 +7,8 @@ import java.util.Properties;
 
 public class KafkaMessageProducer {
 
-    private static final String TOPIC_NAME = "Flight-Info"; // Replace with your Kafka topic name
-    private static final String BOOTSTRAP_SERVERS = "127.0.0.1:9092"; // Replace with your Kafka bootstrap servers
+    private static final String TOPIC_NAME = "Flight-Info";
+    private static final String BOOTSTRAP_SERVERS = "127.0.0.1:9092";
 
     public static void sendMessage(KafkaProducer<String, String> producer, String message) {
         ProducerRecord<String, String> record = new ProducerRecord<>(TOPIC_NAME, message);

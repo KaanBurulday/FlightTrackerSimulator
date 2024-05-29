@@ -4,7 +4,6 @@ import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
-import org.apache.kafka.clients.producer.KafkaProducer;
 
 import java.time.Duration;
 import java.util.Collections;
@@ -20,7 +19,7 @@ public class KafkaMessageConsumer {
         while (true) {
             ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(100));
             for (ConsumerRecord<String, String> record : records) {
-                System.out.println("Received message: " + record.value());
+                System.out.println(record.toString());
             }
         }
     }
@@ -29,11 +28,11 @@ public class KafkaMessageConsumer {
         consumer.subscribe(Collections.singletonList(TOPIC_NAME));
         ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(100));
         for (ConsumerRecord<String, String> record : records) {
-            System.out.println("Received message: " + record.value());
+            System.out.println(record.toString());
         }
     }
 
-    public static KafkaConsumer<String, String> createKafkaProducer() {
+    public static KafkaConsumer<String, String> createKafkaConsumer() {
         Properties props = new Properties();
         props.put("bootstrap.servers", BOOTSTRAP_SERVERS);
         props.put(ConsumerConfig.GROUP_ID_CONFIG, "consumer"); // No consumer group specified

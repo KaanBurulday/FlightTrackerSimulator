@@ -36,8 +36,10 @@ public class Simulation {
     private static double airportAccessDistance;
     private static ScheduledExecutorService executorService;
 
+    @Getter
     private static KafkaProducer<String, String> kafkaProducer = KafkaMessageProducer.createKafkaProducer();
-    private static KafkaConsumer<String, String> kafkaConsumer = KafkaMessageConsumer.createKafkaProducer();
+    @Getter
+    private static KafkaConsumer<String, String> kafkaConsumer = KafkaMessageConsumer.createKafkaConsumer();
 
     public static void newInstance() {
         airportList = new ArrayList<>();
